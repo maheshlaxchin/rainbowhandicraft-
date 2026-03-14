@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Rainbow Handicraft Udhyog produces quality handicraft woven handbags by providing free skill development trainings and sustainable employment to marginalized women in Nepal"/>
+  <meta name="keywords" content="Rainbow handicraft Udhyog, handicraft in nepal, handicraft in pokhara, woven nepal, woven handbags, cotton handbags, RHU, Handicraft nepal"/>
+  <title>Rainbow Handicraft Udhyog</title>
+  <link rel="icon" href="assets/gallery/p.png" type="image/x-icon"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --teal: #21d192;
+      --dark-teal: #1abc9c;
+      --navy: #20479B;
+      --dark: #3C3C3C;
+      --light-bg: #f9f9f9;
+      --text: #555;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', sans-serif; color: var(--text); overflow-x: hidden; }
+
+    /* ===== NAVBAR ===== */
+    .nav {
+      height: 60px;
+      width: 100%;
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .nav-logo img { height: 50px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--teal); color: var(--white); }
+    .nav-links a.active { color: var(--navy); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 24px; color: var(--dark); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; flex-direction: column; position: absolute;
+        top: 60px; left: 0; width: 100%;
+        background: var(--white); padding: 10px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { width: 100%; padding: 12px 20px; border-radius: 0; }
+      .nav-toggle { display: block; }
+    }
+
+    /* ===== HERO SLIDER ===== */
+    .hero {
+      width: 100%; height: 420px;
+      background: linear-gradient(135deg, #20479B 0%, #21d192 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-content { text-align: center; color: var(--white); padding: 20px; z-index: 1; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 14px; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    .hero-content p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 24px; opacity: 0.92; }
+    .hero-btn {
+      display: inline-block; background: var(--white); color: var(--navy);
+      padding: 12px 32px; border-radius: 30px; font-weight: 700;
+      text-decoration: none; font-size: 15px; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .hero::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -100px; left: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ===== PAGE SECTIONS ===== */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ===== PRODUCT CATEGORY SECTION ===== */
+    .section-wrap { padding: 40px 20px; background: var(--light-bg); }
+    .cat-block { margin-bottom: 48px; }
+    .cat-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 3px solid var(--teal);
+    }
+    .cat-header img { height: 36px; width: auto; }
+    .cat-header h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.6rem; }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: var(--white); border-radius: 10px;
+      overflow: hidden; text-decoration: none; color: var(--text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.13); }
+    .product-card .img-wrap {
+      width: 100%; height: 160px; overflow: hidden;
+      background: #f0f0f0; display: flex; align-items: center; justify-content: center;
+    }
+    .product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .product-card:hover .img-wrap img { transform: scale(1.06); }
+    .product-card .card-label {
+      padding: 10px 12px; font-size: 13px; font-weight: 700;
+      color: var(--navy); text-align: center;
+    }
+    .img-placeholder {
+      width: 100%; height: 100%; background: linear-gradient(135deg, #e8f4f1, #d4eee7);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--dark-teal); font-size: 12px; text-align: center; padding: 10px;
+    }
+    .img-placeholder i { font-size: 32px; margin-bottom: 6px; opacity: 0.6; }
+
+    /* ===== ABOUT PAGE ===== */
+    .about-wrap { max-width: 960px; margin: 0 auto; padding: 50px 20px; }
+    .about-wrap h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); margin-bottom: 24px; }
+    .about-wrap p { color: var(--text); line-height: 1.85; margin-bottom: 16px; font-size: 15px; }
+    .about-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--dark-teal) 100%);
+      color: var(--white); padding: 60px 20px; text-align: center;
+    }
+    .about-hero h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+    .about-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+    /* ===== INFO PAGES ===== */
+    .info-wrap { max-width: 820px; margin: 0 auto; padding: 50px 24px; }
+    .info-wrap h1 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 2rem; margin-bottom: 20px; border-bottom: 3px solid var(--teal); padding-bottom: 12px; }
+    .info-wrap p { line-height: 1.85; margin-bottom: 14px; font-size: 15px; }
+    .info-wrap ul { padding-left: 20px; margin-bottom: 16px; }
+    .info-wrap ul li { margin-bottom: 8px; line-height: 1.7; }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; padding: 40px 20px; max-width: 900px; margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--white); border-radius: 12px; padding: 30px 20px;
+      text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .contact-card i { font-size: 2rem; color: var(--teal); margin-bottom: 12px; display: block; }
+    .contact-card h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; color: var(--text); }
+
+    /* ===== BOOKING MODAL ===== */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.55);
+      z-index: 2000; align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: 14px;
+      padding: 36px; max-width: 480px; width: 90%;
+      position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 18px;
+      background: none; border: none; font-size: 22px;
+      cursor: pointer; color: var(--text);
+    }
+    .modal-box h2 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 10px 14px; border: 1.5px solid #ddd;
+      border-radius: 8px; font-size: 14px; font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--teal); outline: none;
+    }
+    .btn-submit {
+      width: 100%; padding: 13px; background: var(--teal);
+      color: var(--white); border: none; border-radius: 8px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--dark-teal); }
+    .book-now-btn {
+      display: inline-block; background: var(--teal); color: var(--white);
+      padding: 10px 24px; border-radius: 6px; font-weight: 700;
+      font-size: 13px; text-decoration: none; cursor: pointer;
+      border: none; margin-top: 10px; transition: background 0.2s;
+    }
+    .book-now-btn:hover { background: var(--dark-teal); }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--dark); color: var(--white); margin-top: 60px; }
+    .footer-top {
+      background: var(--teal); padding: 18px 30px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-top p { color: var(--white); font-weight: 700; font-size: 15px; }
+    .social-icons { display: flex; gap: 12px; }
+    .social-icons a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.25); color: var(--white);
+      text-decoration: none; font-size: 16px; transition: background 0.2s;
+    }
+    .social-icons a:hover { background: rgba(255,255,255,0.5); }
+    .footer-body {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px; padding: 40px 40px 30px;
+    }
+    .footer-col h3 {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px;
+      margin-bottom: 14px; color: var(--teal);
+    }
+    .footer-col hr { border: none; border-top: 2px solid var(--teal); margin-bottom: 16px; width: 50px; margin-left: 0; }
+    .footer-col a, .footer-col p {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 13px; margin-bottom: 10px; line-height: 1.6;
+    }
+    .footer-col a:hover { color: var(--teal); }
+    .footer-col .contact-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; }
+    .footer-col .contact-item i { color: var(--teal); margin-top: 3px; min-width: 16px; }
+    .footer-bottom {
+      background: var(--teal); text-align: center; padding: 14px;
+      font-size: 13px; color: var(--white);
+    }
+
+    /* ===== PAGE BANNER ===== */
+    .page-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e6b8a 100%);
+      color: var(--white); text-align: center; padding: 50px 20px;
+    }
+    .page-banner h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; margin-bottom: 8px; }
+    .page-banner p { opacity: 0.85; font-size: 15px; }
+
+    /* ===== PRODUCT DETAIL ===== */
+    .product-detail {
+      max-width: 900px; margin: 40px auto; padding: 0 20px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    }
+    @media(max-width: 600px) { .product-detail { grid-template-columns: 1fr; } }
+    .product-detail .detail-img {
+      border-radius: 12px; overflow: hidden; background: #f0f0f0;
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .product-detail .detail-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-detail .detail-info { padding: 10px 0; }
+    .product-detail .detail-info h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1.8rem; margin-bottom: 12px; }
+    .product-detail .detail-info p { line-height: 1.8; margin-bottom: 16px; }
+    .product-detail .detail-info .tag {
+      display: inline-block; background: #e8f7f3; color: var(--dark-teal);
+      font-size: 12px; padding: 4px 12px; border-radius: 20px; margin-right: 6px; margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb { padding: 12px 20px; font-size: 13px; color: #999; background: #f5f5f5; }
+    .breadcrumb a { color: var(--navy); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ===== BACK BTN ===== */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: none; border: 2px solid var(--navy); color: var(--navy);
+      padding: 8px 18px; border-radius: 6px; font-weight: 700;
+      cursor: pointer; font-size: 13px; margin: 20px; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--navy); color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">
+    <a href="#" onclick="showPage('home')">
+      <img src="assets/gallery/bepaar_new.png" alt="Rainbow Handicraft" onerror="this.style.display='none';document.getElementById('nav-text-logo').style.display='block'"/>
+      <span id="nav-text-logo" style="display:none;font-family:'Playfair Display',serif;font-size:1.2rem;color:#20479B;font-weight:700;">Rainbow Handicraft</span>
+    </a>
+  </div>
+  <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#" onclick="showPage('home');closeNav()">Home</a>
+    <a href="#" onclick="showPage('women');closeNav()">Women</a>
+    <a href="#" onclick="showPage('men');closeNav()">Men</a>
+    <a href="#" onclick="showPage('kids');closeNav()">Kids</a>
+    <a href="#" onclick="showPage('essential');closeNav()">Essential</a>
+    <a href="#" onclick="showPage('homedecoration');closeNav()">Home Deco</a>
+    <a href="#" onclick="showPage('fashion');closeNav()">Fashion</a>
+    <a href="#" onclick="showPage('trending');closeNav()">Trending</a>
+    <a href="#" onclick="showPage('classic');closeNav()">Classic</a>
+    <a href="#" onclick="showPage('about_us');closeNav()">About Us</a>
+  </div>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Rainbow Handicraft Udhyog</h1>
+      <p>Handcrafted woven bags empowering women in Pokhara, Nepal — since 2000</p>
+      <a href="#" class="hero-btn" onclick="showPage('women')">Shop Our Collection</a>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <!-- Women -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/women1.jpg.png" alt="Women" onerror="this.style.display='none'"/>
+        <h2>Women</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('women','a_bag','A Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>A Bag</div></div>
+          <div class="card-label">A Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('women','cross_pocket_school_bag','Cross Pocket School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Cross Pocket School Bag</div></div>
+          <div class="card-label">Cross Pocket School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('women','double_bag','Double Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Double Bag</div></div>
+          <div class="card-label">Double Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('women','everest_bag','Everest Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Everest Bag</div></div>
+          <div class="card-label">Everest Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('women','file_bag','File Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-briefcase"></i>File Bag</div></div>
+          <div class="card-label">File Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('women','baby_school_bag','Baby School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Baby School Bag</div></div>
+          <div class="card-label">Baby School Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Men -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/man1.png" alt="Men" onerror="this.style.display='none'"/>
+        <h2>Men</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('men','a_bag','A Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>A Bag</div></div>
+          <div class="card-label">A Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('men','cross_pocket_school_bag','Cross Pocket School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Cross Pocket School Bag</div></div>
+          <div class="card-label">Cross Pocket School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('men','double_bag','Double Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Double Bag</div></div>
+          <div class="card-label">Double Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('men','baby_school_bag','Baby School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Baby School Bag</div></div>
+          <div class="card-label">Baby School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('men','laptop_cover','Laptop Cover')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-laptop"></i>Laptop Cover</div></div>
+          <div class="card-label">Laptop Cover</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('men','strap_bag','Strap Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Strap Bag</div></div>
+          <div class="card-label">Strap Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kids -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/kids1.png" alt="Kids" onerror="this.style.display='none'"/>
+        <h2>Kids</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('kids','elephant_doll','Elephant Doll')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-elephant"></i>Elephant Doll</div></div>
+          <div class="card-label">Elephant Doll</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('kids','baby_school_bag','Baby School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Baby School Bag</div></div>
+          <div class="card-label">Baby School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('kids','rose_bag','Rose Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Rose Bag</div></div>
+          <div class="card-label">Rose Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('kids','smallbackarry_bag','Small Backcarry Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Small Backcarry Bag</div></div>
+          <div class="card-label">Small Backcarry Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Essential -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/essential1.png" alt="Essential" onerror="this.style.display='none'"/>
+        <h2>Essential</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('essential','cross_pocket_school_bag','Cross Pocket School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Cross Pocket</div></div>
+          <div class="card-label">Cross Pocket School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('essential','double_bag','Double Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Double Bag</div></div>
+          <div class="card-label">Double Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('essential','file_bag','File Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-briefcase"></i>File Bag</div></div>
+          <div class="card-label">File Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('essential','laptop_cover','Laptop Cover')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-laptop"></i>Laptop Cover</div></div>
+          <div class="card-label">Laptop Cover</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('essential','side_file_bag','Side File Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-briefcase"></i>Side File Bag</div></div>
+          <div class="card-label">Side File Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('essential','baby_school_bag','Baby School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Baby School Bag</div></div>
+          <div class="card-label">Baby School Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Decoration -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/homedecoration1.png" alt="Home Decoration" onerror="this.style.display='none'"/>
+        <h2>Home Decoration</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('homedecoration','elephant_doll','Elephant Doll')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-home"></i>Elephant Doll</div></div>
+          <div class="card-label">Elephant Doll</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fashion -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/fashion1.png" alt="Fashion" onerror="this.style.display='none'"/>
+        <h2>Fashion</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('fashion','a_bag','A Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>A Bag</div></div>
+          <div class="card-label">A Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('fashion','double_bag','Double Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Double Bag</div></div>
+          <div class="card-label">Double Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('fashion','cross_pocket_school_bag','Cross Pocket School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Cross Pocket</div></div>
+          <div class="card-label">Cross Pocket School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('fashion','everest_bag','Everest Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-mountain"></i>Everest Bag</div></div>
+          <div class="card-label">Everest Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('fashion','file_bag','File Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-briefcase"></i>File Bag</div></div>
+          <div class="card-label">File Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('fashion','tie_shopping_bag','Tie Shopping Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Tie Shopping Bag</div></div>
+          <div class="card-label">Tie Shopping Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trending -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/des1.png" alt="Trending" onerror="this.style.display='none'"/>
+        <h2>Trending</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('trending','a_bag','A Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-fire"></i>A Bag</div></div>
+          <div class="card-label">A Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('trending','cross_pocket_school_bag','Cross Pocket School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-fire"></i>Cross Pocket</div></div>
+          <div class="card-label">Cross Pocket School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('trending','everest_bag','Everest Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-mountain"></i>Everest Bag</div></div>
+          <div class="card-label">Everest Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('trending','laptop_cover','Laptop Cover')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-laptop"></i>Laptop Cover</div></div>
+          <div class="card-label">Laptop Cover</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('trending','lunch_bag','Lunch Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Lunch Bag</div></div>
+          <div class="card-label">Lunch Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('trending','baby_school_bag','Baby School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Baby School Bag</div></div>
+          <div class="card-label">Baby School Bag</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Classic -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <img src="assets/gallery/de1.png" alt="Classic" onerror="this.style.display='none'"/>
+        <h2>Classic</h2>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showProductDetail('classic','double_bag','Double Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Double Bag</div></div>
+          <div class="card-label">Double Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('classic','file_bag','File Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-briefcase"></i>File Bag</div></div>
+          <div class="card-label">File Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('classic','normal_school_bag','Normal School Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-backpack"></i>Normal School Bag</div></div>
+          <div class="card-label">Normal School Bag</div>
+        </div>
+        <div class="product-card" onclick="showProductDetail('classic','strap_bag','Strap Bag')">
+          <div class="img-wrap"><div class="img-placeholder"><i class="fas fa-shopping-bag"></i>Strap Bag</div></div>
+          <div class="card-label">Strap Bag</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CATEGORY PAGES ===================== -->
+<div id="page-women" class="page">
+  <div class="page-banner"><h1>Women's Collection</h1><p>Handcrafted woven bags for women</p></div>
+  <div class="section-wrap" id="women-grid"></div>
+</div>
+<div id="page-men" class="page">
+  <div class="page-banner"><h1>Men's Collection</h1><p>Handcrafted woven bags for men</p></div>
+  <div class="section-wrap" id="men-grid"></div>
+</div>
+<div id="page-kids" class="page">
+  <div class="page-banner"><h1>Kids' Collection</h1><p>Handcrafted items for children</p></div>
+  <div class="section-wrap" id="kids-grid"></div>
+</div>
+<div id="page-essential" class="page">
+  <div class="page-banner"><h1>Essential</h1><p>Everyday essentials — handcrafted with care</p></div>
+  <div class="section-wrap" id="essential-grid"></div>
+</div>
+<div id="page-homedecoration" class="page">
+  <div class="page-banner"><h1>Home Decoration</h1><p>Beautiful woven home décor pieces</p></div>
+  <div class="section-wrap" id="homedecoration-grid"></div>
+</div>
+<div id="page-fashion" class="page">
+  <div class="page-banner"><h1>Fashion</h1><p>Trendy handcrafted bags</p></div>
+  <div class="section-wrap" id="fashion-grid"></div>
+</div>
+<div id="page-trending" class="page">
+  <div class="page-banner"><h1>Trending</h1><p>Our most popular styles right now</p></div>
+  <div class="section-wrap" id="trending-grid"></div>
+</div>
+<div id="page-classic" class="page">
+  <div class="page-banner"><h1>Classic</h1><p>Timeless handicraft designs</p></div>
+  <div class="section-wrap" id="classic-grid"></div>
+</div>
+
+<!-- ===================== PRODUCT DETAIL PAGE ===================== -->
+<div id="page-product" class="page">
+  <div class="breadcrumb" id="productBreadcrumb"></div>
+  <div class="product-detail">
+    <div class="detail-img">
+      <img id="productImg" src="" alt="Product" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'width:100%;height:300px;border-radius:8px;\'><i class=\'fas fa-shopping-bag\' style=\'font-size:60px;\'></i><br><span>Photo coming soon</span></div>';this.onerror=null;"/>
+    </div>
+    <div class="detail-info">
+      <h2 id="productName"></h2>
+      <p id="productDesc"></p>
+      <div id="productTags"></div>
+      <button class="book-now-btn" onclick="openModal()">
+        <i class="fas fa-envelope"></i> &nbsp; Enquire / Book Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABOUT US PAGE ===================== -->
+<div id="page-about_us" class="page">
+  <div class="about-hero">
+    <h2>Rainbow Handicraft — Our Story</h2>
+    <p>Empowering women through traditional craftsmanship in Nepal</p>
+  </div>
+  <div class="about-wrap">
+    <p>With more than 20 years of experience in leading different community organizations, our director Mrs. Goma Dhakal started a non-profit organization for children in critical situations called Rainbow Children Home Nepal.</p>
+    <p>Running the organization for 5 years, her team eventually realized that children often land up in critical situations due to their mothers not being educated or professionally trained. Considering our own traditional skills passed by our ancestors and the opportunities provided by Pokhara developing as the centre of all tourism in Nepal, Mrs. Goma Dhakal founded Rainbow Handicraft Nepal as a small scale industry officially registered under the Department of Small and Cottage Industries.</p>
+    <p>It took us almost two years to set up the core team, learn all the skills, produce a catalog of unique designs, build quality, and set up a store.</p>
+    <p>During the early days the VPI Foundation and CIDEN Nepal aided us financially, providing seed funding for the organization to grow. Our long-time friend Mrs. Rosemary Costello dedicated a decade voluntarily for marketing and selling our products across Australia, and Mrs. Marie Kelly also joined in for the beautiful cause.</p>
+    <p>This provided us more opportunities to train more women. From 12 we grew to more than 45 women producing high quality and exclusive designs of handbags in Pokhara.</p>
+    <p>During our glory years we were employing 65 women including 12 female prisoners in the district prison, with training centers in 4 villages. Then a 7.6 magnitude mega earthquake struck Nepal, devastating the economy and the tourism market.</p>
+    <p>We have been rebuilding ever since, developing new strategies including improving our website and trying to expand our international market presence. We have the prayers of the women, the energy and dedication of our director — and we will get through the crisis.</p>
+    <p>Today, 18 and 19 year old girls from Rainbow Children Home Nepal are the trainers and managers of each department, handling all aspects of production, logistics and quality assurance. Rainbow Handicraft has surely proved a platform for the girls of Rainbow Children Home to hone their skills.</p>
+
+    <div class="contact-cards" style="padding: 30px 0;">
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4>Location</h4>
+        <p>Lakeside-6, Pokhara, Nepal</p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h4>Email</h4>
+        <p><a href="mailto:rhunepal@gmail.com">rhunepal@gmail.com</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <h4>Mobile</h4>
+        <p>+977 9856027599</p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-phone-alt"></i>
+        <h4>Telephone</h4>
+        <p>061-452089</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== INFO PAGES ===================== -->
+<div id="page-objective" class="page">
+  <div class="page-banner"><h1>Our Objective</h1></div>
+  <div class="info-wrap">
+    <h1>Our Objective</h1>
+    <p>Rainbow Handicraft Udhyog exists to provide sustainable employment and free skill development training to marginalized women in Nepal.</p>
+    <ul>
+      <li>Provide free skill development training in weaving, dyeing, tailoring and designing to women in need</li>
+      <li>Generate sustainable income for marginalized women and their families</li>
+      <li>Preserve and promote traditional Nepali handicraft techniques</li>
+      <li>Support the mission of Rainbow Children Home Nepal</li>
+      <li>Build an internationally recognized brand for quality Nepali woven goods</li>
+    </ul>
+  </div>
+</div>
+
+<div id="page-handicraft_history" class="page">
+  <div class="page-banner"><h1>Handicraft History</h1></div>
+  <div class="info-wrap">
+    <h1>History of Handicraft in Nepal</h1>
+    <p>Nepal has a rich and ancient tradition of handicraft production dating back thousands of years. The Kathmandu Valley was long a center of artistic production, with artisans creating intricate wood carvings, metalwork, thangka paintings, and woven textiles.</p>
+    <p>The weaving tradition, in particular, has deep roots across Nepal's different ethnic communities. Dhaka weaving from the eastern hills, Dhangad from western Nepal, and the cotton weaving traditions of the Terai all contribute to a vibrant tapestry of textile craft.</p>
+    <p>In Pokhara, the growth of tourism over recent decades created new opportunities for handicraft producers. Rainbow Handicraft draws on these deep traditions, training women in skills passed down through generations, and adapting them to produce beautiful, functional bags and home décor items appreciated by visitors from around the world.</p>
+  </div>
+</div>
+
+<div id="page-handicraft_in_nepal" class="page">
+  <div class="page-banner"><h1>Handicraft in Nepal</h1></div>
+  <div class="info-wrap">
+    <h1>Handicraft in Nepal</h1>
+    <p>Nepal's handicraft sector is one of the most important export industries in the country, employing hundreds of thousands of people — particularly women in rural and semi-urban areas.</p>
+    <p>The sector includes products ranging from pashmina shawls and woolen carpets to handmade paper, thangka paintings, silver jewelry, bronze statues, and woven bags. Pokhara, as Nepal's premier tourist destination, is a key hub for handicraft retail and export.</p>
+    <p>Rainbow Handicraft Udhyog is a proud part of this tradition, contributing both to the economic empowerment of women and to the global appreciation of Nepali craft skills.</p>
+  </div>
+</div>
+
+<!-- ===================== ENQUIRY MODAL ===================== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <h2>Enquire / Book Now</h2>
+    <p style="font-size:13px;color:#999;margin-bottom:20px;">Send us a message and we'll get back to you.</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="formName" placeholder="Full name"/>
+    </div>
+    <div class="form-group">
+      <label>Email or Phone</label>
+      <input type="text" id="formContact" placeholder="your@email.com or +977..."/>
+    </div>
+    <div class="form-group">
+      <label>Product of Interest</label>
+      <input type="text" id="formProduct" placeholder="e.g. Women's Double Bag"/>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="formMessage" rows="3" placeholder="Your enquiry or booking details..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitForm()">
+      <i class="fas fa-paper-plane"></i> &nbsp; Send Enquiry
+    </button>
+    <p style="font-size:12px;color:#aaa;text-align:center;margin-top:14px;">Or email us directly: <a href="mailto:rhunepal@gmail.com" style="color:#21d192;">rhunepal@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-top">
+    <p>Get Connected with us on Social Networks!</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/Rainbow-Handicraft-Nepal-120053128123808/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+  <div class="footer-body">
+    <div class="footer-col">
+      <h3>Rainbow Handicraft</h3>
+      <hr/>
+      <p>Handcrafted woven bags and home décor, made by women artisans in Pokhara, Nepal.</p>
+      <p style="margin-top:12px;">Empowering women since 2000.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Category</h3>
+      <hr/>
+      <a href="#" onclick="showPage('women')">Women</a>
+      <a href="#" onclick="showPage('men')">Men</a>
+      <a href="#" onclick="showPage('kids')">Kids</a>
+      <a href="#" onclick="showPage('essential')">Essential</a>
+      <a href="#" onclick="showPage('homedecoration')">Home Decoration</a>
+      <a href="#" onclick="showPage('fashion')">Fashion</a>
+      <a href="#" onclick="showPage('trending')">Trending</a>
+      <a href="#" onclick="showPage('classic')">Classic</a>
+    </div>
+    <div class="footer-col">
+      <h3>Navigation</h3>
+      <hr/>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about_us')">About Us</a>
+      <a href="#" onclick="showPage('objective')">Objective</a>
+      <a href="#" onclick="showPage('handicraft_history')">Handicraft History</a>
+      <a href="#" onclick="showPage('handicraft_in_nepal')">Handicraft in Nepal</a>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <hr/>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Lakeside-6, Pokhara, Nepal</span></div>
+      <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:rhunepal@gmail.com">rhunepal@gmail.com</a></div>
+      <div class="contact-item"><i class="fas fa-phone"></i><span>+977 9856027599</span></div>
+      <div class="contact-item"><i class="fas fa-phone-alt"></i><span>061-452089</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2024 Rainbow Handicraft Udhyog, Pokhara, Nepal. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// ===== PRODUCT DATA =====
+const categoryProducts = {
+  women: [
+    {type:'a_bag', label:'A Bag'},
+    {type:'cross_pocket_school_bag', label:'Cross Pocket School Bag'},
+    {type:'double_bag', label:'Double Bag'},
+    {type:'everest_bag', label:'Everest Bag'},
+    {type:'file_bag', label:'File Bag'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'laptop_cover', label:'Laptop Cover'},
+    {type:'lorry_bag', label:'Lorry Bag'},
+    {type:'lunch_bag', label:'Lunch Bag'},
+    {type:'nanu_bag', label:'Nanu Bag'},
+    {type:'normal_school_bag', label:'Normal School Bag'},
+    {type:'rg_bag', label:'RG Bag'},
+    {type:'rose_bag', label:'Rose Bag'},
+    {type:'rucksack_bag', label:'Rucksack Bag'},
+    {type:'side_file_bag', label:'Side File Bag'},
+    {type:'smallbackarry_bag', label:'Small Backcarry Bag'},
+    {type:'strap_bag', label:'Strap Bag'},
+    {type:'tie_shopping_bag', label:'Tie Shopping Bag'},
+    {type:'travelling_bag', label:'Travelling Bag'},
+    {type:'tripple_purse', label:'Triple Purse'},
+    {type:'two_pocket_rucksack_bag', label:'Two Pocket Rucksack Bag'},
+  ],
+  men: [
+    {type:'a_bag', label:'A Bag'},
+    {type:'cross_pocket_school_bag', label:'Cross Pocket School Bag'},
+    {type:'double_bag', label:'Double Bag'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'laptop_cover', label:'Laptop Cover'},
+    {type:'lorry_bag', label:'Lorry Bag'},
+    {type:'rg_bag', label:'RG Bag'},
+    {type:'rose_bag', label:'Rose Bag'},
+    {type:'normal_school_bag', label:'Normal School Bag'},
+    {type:'smallbackarry_bag', label:'Small Backcarry Bag'},
+    {type:'strap_bag', label:'Strap Bag'},
+    {type:'travelling_bag', label:'Travelling Bag'},
+  ],
+  kids: [
+    {type:'elephant_doll', label:'Elephant Doll'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'rose_bag', label:'Rose Bag'},
+    {type:'smallbackarry_bag', label:'Small Backcarry Bag'},
+  ],
+  essential: [
+    {type:'cross_pocket_school_bag', label:'Cross Pocket School Bag'},
+    {type:'double_bag', label:'Double Bag'},
+    {type:'file_bag', label:'File Bag'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'laptop_cover', label:'Laptop Cover'},
+    {type:'side_file_bag', label:'Side File Bag'},
+    {type:'lunch_bag', label:'Lunch Bag'},
+    {type:'nanu_bag', label:'Nanu Bag'},
+    {type:'rucksack_bag', label:'Rucksack Bag'},
+    {type:'tie_shopping_bag', label:'Tie Shopping Bag'},
+    {type:'travelling_bag', label:'Travelling Bag'},
+    {type:'tripple_purse', label:'Triple Purse'},
+    {type:'two_pocket_rucksack_bag', label:'Two Pocket Rucksack Bag'},
+  ],
+  homedecoration: [
+    {type:'elephant_doll', label:'Elephant Doll'},
+  ],
+  fashion: [
+    {type:'a_bag', label:'A Bag'},
+    {type:'double_bag', label:'Double Bag'},
+    {type:'cross_pocket_school_bag', label:'Cross Pocket School Bag'},
+    {type:'everest_bag', label:'Everest Bag'},
+    {type:'file_bag', label:'File Bag'},
+    {type:'tie_shopping_bag', label:'Tie Shopping Bag'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'laptop_cover', label:'Laptop Cover'},
+    {type:'lorry_bag', label:'Lorry Bag'},
+    {type:'lunch_bag', label:'Lunch Bag'},
+    {type:'nanu_bag', label:'Nanu Bag'},
+    {type:'normal_school_bag', label:'Normal School Bag'},
+    {type:'rg_bag', label:'RG Bag'},
+    {type:'rose_bag', label:'Rose Bag'},
+    {type:'rucksack_bag', label:'Rucksack Bag'},
+    {type:'side_file_bag', label:'Side File Bag'},
+    {type:'smallbackarry_bag', label:'Small Backcarry Bag'},
+    {type:'travelling_bag', label:'Travelling Bag'},
+    {type:'tripple_purse', label:'Triple Purse'},
+    {type:'two_pocket_rucksack_bag', label:'Two Pocket Rucksack Bag'},
+  ],
+  trending: [
+    {type:'a_bag', label:'A Bag'},
+    {type:'cross_pocket_school_bag', label:'Cross Pocket School Bag'},
+    {type:'everest_bag', label:'Everest Bag'},
+    {type:'baby_school_bag', label:'Baby School Bag'},
+    {type:'laptop_cover', label:'Laptop Cover'},
+    {type:'lunch_bag', label:'Lunch Bag'},
+    {type:'lorry_bag', label:'Lorry Bag'},
+    {type:'nanu_bag', label:'Nanu Bag'},
+    {type:'normal_school_bag', label:'Normal School Bag'},
+    {type:'rg_bag', label:'RG Bag'},
+    {type:'rose_bag', label:'Rose Bag'},
+    {type:'rucksack_bag', label:'Rucksack Bag'},
+    {type:'side_file_bag', label:'Side File Bag'},
+    {type:'smallbackarry_bag', label:'Small Backcarry Bag'},
+    {type:'tie_shopping_bag', label:'Tie Shopping Bag'},
+    {type:'travelling_bag', label:'Travelling Bag'},
+    {type:'tripple_purse', label:'Triple Purse'},
+    {type:'two_pocket_rucksack_bag', label:'Two Pocket Rucksack Bag'},
+  ],
+  classic: [
+    {type:'double_bag', label:'Double Bag'},
+    {type:'file_bag', label:'File Bag'},
+    {type:'normal_school_bag', label:'Normal School Bag'},
+    {type:'strap_bag', label:'Strap Bag'},
+  ]
+};
+
+const icons = {
+  bag: 'fas fa-shopping-bag',
+  laptop: 'fas fa-laptop',
+  elephant: 'fas fa-paw',
+  school: 'fas fa-backpack',
+  file: 'fas fa-briefcase',
+};
+
+function getIcon(type) {
+  if (type.includes('laptop')) return icons.laptop;
+  if (type.includes('elephant')) return icons.elephant;
+  if (type.includes('school') || type.includes('rucksack') || type.includes('backpack')) return icons.school;
+  if (type.includes('file')) return icons.file;
+  return icons.bag;
+}
+
+function imgError(imgEl, iconClass, label) {
+  var wrap = imgEl.parentElement;
+  wrap.innerHTML = '<div class="img-placeholder"><i class="' + iconClass + '"></i><span style="font-size:11px;margin-top:6px;display:block;">' + label + '</span></div>';
+}
+
+function buildCategoryGrid(cat) {
+  var el = document.getElementById(cat + '-grid');
+  if (!el || el.innerHTML.trim() !== '') return;
+  var products = categoryProducts[cat] || [];
+  var grid = document.createElement('div');
+  grid.className = 'product-grid';
+  products.forEach(function(p) {
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = function() { showProductDetail(cat, p.type, p.label); };
+    var iconClass = getIcon(p.type);
+    var imgWrap = document.createElement('div');
+    imgWrap.className = 'img-wrap';
+    var img = document.createElement('img');
+    img.src = 'products/' + cat + '/' + p.type + '/1.png';
+    img.alt = p.label;
+    img.onerror = function() { imgError(this, iconClass, p.label); };
+    imgWrap.appendChild(img);
+    var label = document.createElement('div');
+    label.className = 'card-label';
+    label.textContent = p.label;
+    card.appendChild(imgWrap);
+    card.appendChild(label);
+    grid.appendChild(card);
+  });
+  el.appendChild(grid);
+}
+
+// ===== NAVIGATION =====
+let currentCat = null;
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) { el.classList.add('active'); }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if (categoryProducts[page]) buildCategoryGrid(page);
+}
+
+function showProductDetail(cat, type, name) {
+  currentCat = cat;
+  document.getElementById('productName').textContent = name.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  document.getElementById('productImg').src = `products/${cat}/${type}/1.png`;
+  document.getElementById('productBreadcrumb').innerHTML =
+    `<a href="#" onclick="showPage('home')">Home</a> <span>›</span> <a href="#" onclick="showPage('${cat}')">${cat.charAt(0).toUpperCase()+cat.slice(1)}</a> <span>›</span> ${name}`;
+  document.getElementById('productDesc').textContent =
+    `A beautifully handcrafted ${name} from our ${cat} collection. Made with care by skilled women artisans in Pokhara, Nepal using traditional weaving techniques. Each piece is unique and made with natural cotton fibres.`;
+  document.getElementById('productTags').innerHTML =
+    `<span class="tag">Handcrafted</span><span class="tag">Nepal Made</span><span class="tag">${cat.charAt(0).toUpperCase()+cat.slice(1)}</span>`;
+  document.getElementById('formProduct').value = `${cat} - ${name}`;
+  showPage('product');
+}
+
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+function openModal() {
+  document.getElementById('bookingModal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('bookingModal').classList.remove('open');
+}
+
+function submitForm() {
+  const name = document.getElementById('formName').value.trim();
+  const contact = document.getElementById('formContact').value.trim();
+  const product = document.getElementById('formProduct').value.trim();
+  const message = document.getElementById('formMessage').value.trim();
+  if (!name || !contact) { alert('Please fill in your name and contact.'); return; }
+  const subject = encodeURIComponent('Enquiry: ' + product);
+  const body = encodeURIComponent('Name: ' + name + '\nContact: ' + contact + '\nProduct: ' + product + '\n\nMessage: ' + message);
+  window.location.href = 'mailto:rhunepal@gmail.com?subject=' + subject + '&body=' + body;
+  closeModal();
+}
+
+// Auto-load real images for home page static cards when photos are present
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('#page-home .product-card').forEach(function(card) {
+    var oc = card.getAttribute('onclick') || '';
+    var m = oc.match(/showProductDetail\('([^']+)','([^']+)','([^']+)'\)/);
+    if (!m) return;
+    var cat = m[1], type = m[2], label = m[3];
+    var wrap = card.querySelector('.img-wrap');
+    if (!wrap) return;
+    var img = new Image();
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;transition:transform 0.3s;';
+    img.onload = function() { wrap.innerHTML = ''; wrap.appendChild(img); };
+    img.src = 'products/' + cat + '/' + type + '/1.png';
+  });
+});
+
+// Modal close on overlay click
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
